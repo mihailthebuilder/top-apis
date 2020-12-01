@@ -7,11 +7,18 @@
 </head>
 <body>
   <img src="#" />
-  <button type="button">Refresh</button>
+
+  <form action="">
+    <input type="text" required>
+
+    <button type="submit">Refresh</button>
+  </form>
+
+
   <script>
 
-    const fetchGif = () => {
-      fetch('https://api.giphy.com/v1/gifs/translate?api_key=aLPqY54lYFhUf3ORiEawA11WVLFvnDlz&s=cats', {mode: 'cors'})
+    const fetchGif = (inputText) => {
+      fetch(`https://api.giphy.com/v1/gifs/translate?api_key=aLPqY54lYFhUf3ORiEawA11WVLFvnDlz&s=${inputText}`, {mode: 'cors'})
       .then(function(response) {
         return response.json();
       })
@@ -22,7 +29,10 @@
 
     fetchGif();
 
-    document.querySelector('button').addEventListener('click',()=>{fetchGif()});
+    document.querySelector('form').addEventListener('submit',(event)=>{
+      event.preventDefault();
+      fetchGif(document.querySelector('input').value);
+    });
 
   </script>
 </body>
