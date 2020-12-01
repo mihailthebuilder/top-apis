@@ -23,9 +23,8 @@
 
         const response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=aLPqY54lYFhUf3ORiEawA11WVLFvnDlz&s=${inputText}`, {mode: 'cors'});
 
-        response.json().then((response) => {
-          document.querySelector('img').src = response.data.images.original.url;
-        })
+        const responseData = await response.json();
+        document.querySelector('img').src = responseData.data.images.original.url;
 
       }
 
