@@ -3,17 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+  <link rel="stylesheet" href="./index.css">
 </head>
 <body>
   <img src="#" />
+  <button type="button">Refresh</button>
   <script>
-    fetch('https://api.giphy.com/v1/gifs/translate?api_key=aLPqY54lYFhUf3ORiEawA11WVLFvnDlz&s=cats', {mode: 'cors'})
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(response){
-      document.querySelector('img').src = response.data.images.original.url;
-    });
+
+    const fetchGif = () => {
+      fetch('https://api.giphy.com/v1/gifs/translate?api_key=aLPqY54lYFhUf3ORiEawA11WVLFvnDlz&s=cats', {mode: 'cors'})
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(response){
+        document.querySelector('img').src = response.data.images.original.url;
+      });
+    }
+
+    fetchGif();
+
+    document.querySelector('button').addEventListener('click',()=>{fetchGif()});
+
   </script>
 </body>
 </html>
